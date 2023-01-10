@@ -1,0 +1,4 @@
+#Tue Jan 03 14:50:03 CST 2023
+base.0=/Users/mozhu/StudioProjects/yoga_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
