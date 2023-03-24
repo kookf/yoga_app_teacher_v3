@@ -4,10 +4,8 @@ import 'package:dio/dio.dart';
 import '../router/app_pages.dart';
 import '../utils/persisten_storage.dart';
 import 'address.dart';
-import 'dart:io';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 class DioManager{
-
 
   static final DioManager _instance = DioManager._internal();
 
@@ -47,18 +45,15 @@ class DioManager{
     }
 
     Map<String, dynamic> baseHeader = {
-      'access_token': await PersistentStorage().getStorage('acctoken'),
-      'user_id': await PersistentStorage().getStorage('uid'),
-      'company_id': await PersistentStorage().getStorage('companyId'),
-      'team_id': await PersistentStorage().getStorage('team_id'),
+      'Authorization': 'Bearer ${await PersistentStorage().getStorage('token')}',
     };
 
-    print('baseHeader ================ ${baseHeader}');
+    print('baseHeader ================ $baseHeader');
     Options options =
         Options(method: method, contentType: contentType, headers: baseHeader);
 
     print(
-        '请求地址 ==== ${baseOptions.baseUrl}${url} 请求参数===== ${params} 请求body =====${bodyParams}');
+        '请求地址 ==== ${baseOptions.baseUrl}$url 请求参数===== $params 请求body =====$bodyParams');
 
     try {
       var json = await dio.request(url,
@@ -67,18 +62,18 @@ class DioManager{
       var s = jsonEncode(json.data);
       print('请求结果===== result.data ======= ${s}');
 
-      if(json.data['errcode']==403){
-        Get.offNamed(AppRoutes.login);
-      }
-
-      if (json.data['errmsg'] == 'no') {
-        BotToast.closeAllLoading();
+      if(json.data['code']==400){
         BotToast.showText(text: '${json.data['message']}');
+        // Get.offNamed(AppRoutes.login);
       }
       BotToast.closeAllLoading();
       return json.data;
     } on DioError catch (error) {
       print('请求结果===== ${error}');
+
+      if(error.response?.statusCode==302){
+        Get.offAllNamed(AppRoutes.login);
+      }
 
       BotToast.closeAllLoading();
 

@@ -1,11 +1,12 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loading_btn/loading_btn.dart';
 import 'package:yoga_app/common/app_theme.dart';
 import 'package:yoga_app/common/colors.dart';
-import 'package:yoga_app/pages/join_class_modules/join_class_view.dart';
 import 'package:yoga_app/router/app_pages.dart';
+import '../../utils/persisten_storage.dart';
 import 'teacher_login_controller.dart';
 
 class LoginView extends GetView{
@@ -33,12 +34,16 @@ class LoginView extends GetView{
             Stack(
               children: [
                 Container(
+                  // color: Colors.red,
+                  child:Image.asset('images/login_bg.png',width: Get.width,),
+                ),
+                Container(
                   color: Colors.transparent,
-                  padding: EdgeInsets.only(left: 15,top:MediaQuery.of(context).padding.top+40),
+                  padding: EdgeInsets.only(left: 15,top:MediaQuery.of(context).padding.top+20),
                   child: Text('Hello!',style: TextStyle(fontSize: 31,color: AppColor.themeColor),),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+60),
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+40),
                   // color: Colors.redAccent,
                   alignment: Alignment.center,
                   child: Column(
@@ -58,7 +63,7 @@ class LoginView extends GetView{
                     ],
                   )
                 ),
-                Image.asset('images/login_bg.png',fit: BoxFit.cover,width: Get.width,)
+
               ],
             ),
             Column(
@@ -85,8 +90,9 @@ class LoginView extends GetView{
                       border:  Border.all(width: 1, color: AppColor.textFieldBorderColor),
                     ),
                     child: TextField(
+                      controller: controller.emailTextEditingController,
                       inputFormatters: <TextInputFormatter>[
-                        LengthLimitingTextInputFormatter(13) //限制长度
+                        LengthLimitingTextInputFormatter(50) //限制长度
                       ],
                       decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -110,8 +116,9 @@ class LoginView extends GetView{
                     ),
                     child:  TextField(
                       obscureText: true,
+                      controller: controller.passwordTextEditingController,
                       inputFormatters: <TextInputFormatter>[
-                        LengthLimitingTextInputFormatter(13) //限制长度
+                        LengthLimitingTextInputFormatter(30) //限制长度
                       ],
                       decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -141,11 +148,33 @@ class LoginView extends GetView{
                     child: const Text("登入"),
                     onTap: (startLoading, stopLoading, btnState) async {
                       if (btnState == ButtonState.idle) {
+                        if(controller.emailTextEditingController.text.isEmpty){
+                          BotToast.showText(text: '郵件 不能留空');
+                          return;
+                        }
+                        if(controller.passwordTextEditingController.text.isEmpty){
+                          BotToast.showText(text: '密碼 不能留空');
+                          return;
+                        }
                         startLoading();
-                        // call your network api
-                        await Future.delayed(const Duration(seconds: 2));
-                        Get.offAllNamed(AppRoutes.joinClass);
-                        stopLoading();
+
+                        controller.requestDataWithLogin().then((value)async => {
+
+                          if(value['code']==200){
+                            await PersistentStorage().setStorage('token', value['data']['token']),
+                            // Get.offAll(const Tabs()),
+                            Get.offAllNamed(AppRoutes.bottomMain),
+                            stopLoading(),
+                            BotToast.showText(text: '登錄成功')
+                          }else{
+                            BotToast.showText(text: '${value['message']}'),
+                            stopLoading(),
+                          }
+                        });
+
+                        // await Future.delayed(const Duration(seconds: 2));
+
+                        // Get.offAll(const Tabs());
                       }
                     },
                   ),

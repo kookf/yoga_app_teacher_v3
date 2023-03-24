@@ -29,8 +29,8 @@ AppBarTheme _appbarTheme() {
     backgroundColor: AppColor.bgColor,
     // color: HexColor('#2A39E1'),
     elevation: 0,
-    titleTextStyle: TextStyle(fontSize: 16),
-    iconTheme: IconThemeData(color:Colors.black),  // 图标
+    titleTextStyle:  TextStyle(fontSize: 18,color: AppColor.themeTextColor,fontWeight: FontWeight.w500),
+    iconTheme: const IconThemeData(color:Colors.black87),  // 图标
 
   );
 }

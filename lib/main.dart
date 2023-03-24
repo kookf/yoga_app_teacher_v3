@@ -1,16 +1,30 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:yoga_app/router/app_pages.dart';
+import 'package:yoga_app/pages/bottom_nav_moudules/guide_page.dart';
 import 'package:yoga_app/router/app_routes.dart';
 import 'common/app_theme.dart';
 import 'package:get/get.dart';
 
-
 void main() {
+
+  setCustomErrorPage();
+
   runApp(const MyApp());
 }
+
+void setCustomErrorPage() {
+
+  ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
+    return Container(
+      color: Colors.white,
+      child: const CupertinoActivityIndicator(),
+    );
+  };
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -31,12 +45,12 @@ class MyApp extends StatelessWidget {
           Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'), //
         ],
       debugShowCheckedModeBanner: false,
-      title: 'yoga',
+      title: 'yoga_teacher',
       // theme:appThemeData,
       theme: appThemeData,
       builder: BotToastInit(),
       getPages: AppPages.routes,
-      initialRoute: AppRoutes.login,
+      home: const GuidePage(),
       navigatorObservers: [BotToastNavigatorObserver()],
       // home:LoginView(),
     );

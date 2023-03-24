@@ -4,7 +4,7 @@
     "type": "MERGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.example.yoga_app",
+  "applicationId": "com.ykk.yoga_app",
   "variantName": "debug",
   "elements": [
     {

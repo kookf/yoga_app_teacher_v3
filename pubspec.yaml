@@ -41,6 +41,8 @@ dependencies:
   dio: ^4.0.6
   # 持久化
   shared_preferences: ^2.0.15
+  # 下拉刷新
+  flutter_easyrefresh: ^2.2.2
   # toast
   bot_toast: ^4.0.3
   # loading animation
@@ -49,7 +51,23 @@ dependencies:
   loading_btn: ^0.0.2
   # 滑动按钮
   slider_button: ^2.0.0
-
+  # 時間選擇器
+  date_time_picker: ^2.1.0
+  flutter_datetime_picker: ^1.5.1
+  # 網絡圖片
+  cached_network_image: ^3.2.3
+  # 組件
+  bruno: ^2.2.0
+  # 解析html
+  flutter_widget_from_html_core: ^0.9.1
+  event_bus: ^2.0.0
+  card_swiper: ^2.0.4
+  # 图片选择器
+  image_pickers: ^2.0.0+6
+  # 日历组件
+  calendar_date_picker2: ^0.3.7
+  date_picker_timeline: ^1.2.3
+  cart_stepper: ^4.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
