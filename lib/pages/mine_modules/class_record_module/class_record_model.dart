@@ -39,7 +39,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     if (this.list != null) {
       data['list'] = this.list!.map((v) => v.toJson()).toList();
     }
@@ -80,7 +80,7 @@ class SignRecordList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['course_name'] = this.courseName;

@@ -8,7 +8,7 @@ class ClassRoomModel {
   ClassRoomModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ?  Data.fromJson(json['data']) : null;
   }
 }
 
@@ -77,19 +77,19 @@ class ClassRoomList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['course_time_id'] = this.courseTimeId;
-    data['course_id'] = this.courseId;
-    data['name'] = this.name;
-    data['teacher_name'] = this.teacherName;
-    data['total_user'] = this.totalUser;
-    data['address'] = this.address;
-    data['start_day'] = this.startDay;
-    data['start_time'] = this.startTime;
-    data['end_time'] = this.endTime;
-    data['subscribe_id'] = this.subscribeId;
-    data['subscribe_status'] = this.subscribeStatus;
-    data['subscribe_user'] = this.subscribeUser;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['course_time_id'] = courseTimeId;
+    data['course_id'] = courseId;
+    data['name'] = name;
+    data['teacher_name'] = teacherName;
+    data['total_user'] = totalUser;
+    data['address'] = address;
+    data['start_day'] = startDay;
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
+    data['subscribe_id'] = subscribeId;
+    data['subscribe_status'] = subscribeStatus;
+    data['subscribe_user'] = subscribeUser;
     return data;
   }
 }

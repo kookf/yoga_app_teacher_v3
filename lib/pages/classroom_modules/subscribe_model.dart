@@ -8,11 +8,11 @@ class SubscribeModel {
   SubscribeModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['code'] = this.code;
     data['message'] = this.message;
     if (this.data != null) {
@@ -37,7 +37,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.list != null) {
       data['list'] = this.list!.map((v) => v.toJson()).toList();
     }
@@ -74,7 +74,7 @@ class SubscribeList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['id'] = this.id;
     data['name'] = this.name;
     data['user_id'] = this.userId;

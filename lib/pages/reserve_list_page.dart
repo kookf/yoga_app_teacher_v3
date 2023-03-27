@@ -98,7 +98,7 @@ class _ReserveListPageState extends State<ReserveListPage> {
           ),
           GestureDetector(
             onTap: (){
-              Get.to(CourseCreatePage('course.create'));
+              Get.to(const CourseCreatePage('course.create'));
             },
             child: Container(
                 decoration: BoxDecoration(

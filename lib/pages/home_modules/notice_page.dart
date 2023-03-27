@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import '../../services/address.dart';
 import '../../services/dio_manager.dart';
+
 class NoticePage extends StatefulWidget {
 
+  final int id;
 
-  int id;
-  NoticePage(this.id,{Key? key}) : super(key: key);
+  const NoticePage(this.id,{Key? key}) : super(key: key);
 
   @override
   State<NoticePage> createState() => _NoticePageState();
@@ -19,7 +20,7 @@ class _NoticePageState extends State<NoticePage> {
 
   /// 獲取公告詳情
 
-  var _json;
+  Map? _json;
   requestDataWithNoticeDetail()async{
     var params = {
       'method':'notice.info',
@@ -77,7 +78,7 @@ class _NoticePageState extends State<NoticePage> {
           ),
           const SizedBox(height: 25,),
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.transparent,
               // borderRadius: BorderRadius.all(Radius.circular(8))
             ),
@@ -85,7 +86,7 @@ class _NoticePageState extends State<NoticePage> {
             padding: const EdgeInsets.all(15),
             child: CachedNetworkImage(
               imageUrl: '${Address.homeHost}'
-                  '${_json['data']['pic_url']}',
+                  '${_json?['data']['pic_url']}',
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -95,12 +96,12 @@ class _NoticePageState extends State<NoticePage> {
           ),
 
           Center(
-            child: Text('${_json['data']['title']}'),
+            child: Text('${_json?['data']['title']}'),
           ),
 
           Container(
-            padding: EdgeInsets.only(left: 25,right: 25),
-            child: HtmlWidget(_json['data']['body']??''),
+            padding: const EdgeInsets.only(left: 25,right: 25),
+            child: HtmlWidget(_json?['data']['body']??''),
           ),
         ],
       ),

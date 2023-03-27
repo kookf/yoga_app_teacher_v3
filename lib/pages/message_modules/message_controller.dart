@@ -1,7 +1,5 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
-
 import '../../services/address.dart';
 import '../../services/dio_manager.dart';
 import 'message_model.dart';

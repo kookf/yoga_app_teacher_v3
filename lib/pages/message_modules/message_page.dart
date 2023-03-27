@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import '../../common/colors.dart';
 import '../../components/custom_footer.dart';
-import '../../utils/hexcolor.dart';
 import 'message_controller.dart';
 import 'message_model.dart';
 
@@ -116,7 +114,7 @@ class MessagePage extends GetView{
               child: Text('${model.msg}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 19,fontWeight: FontWeight.w700),),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
 
             model.coursesName==null?const SizedBox():Container(
               margin: const EdgeInsets.only(left: 25,top: 0),
@@ -133,7 +131,7 @@ class MessagePage extends GetView{
               child: Text('導師：${model.teacherName}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 16,fontWeight: FontWeight.w700),),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
           ],
         ),
       );

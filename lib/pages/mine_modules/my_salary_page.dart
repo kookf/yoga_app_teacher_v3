@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '../../../common/colors.dart';
@@ -6,8 +5,8 @@ import '../../../components/custom_footer.dart';
 import '../../../services/address.dart';
 import '../../../services/dio_manager.dart';
 import 'package:get/get.dart';
-
 import '../classroom_modules/classroom_model.dart';
+
 
 class MySalaryPage extends StatefulWidget {
   const MySalaryPage({Key? key}) : super(key: key);
@@ -107,12 +106,7 @@ class _MySalaryPageState extends State<MySalaryPage> {
     return Stack(
       children: [
         Center(
-          child: Container(
-            // height: 140,
-            // alignment: Alignment.topCenter,
-            // color: Colors.red,
-            child: Image.asset('images/ic_bg.png',width: Get.width,fit: BoxFit.cover,),
-          ),
+          child: Image.asset('images/ic_bg.png',width: Get.width,fit: BoxFit.cover,),
         ),
         // Image.asset('images/appbar_bg.png',fit: BoxFit.fitWidth,width: Get.width,),
         Align(
@@ -333,7 +327,7 @@ class _MySalaryPageState extends State<MySalaryPage> {
                           color: AppColor.themeTextColor,
                           borderRadius: const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child:  Text('预约待审核',style: TextStyle(color: Colors.white,fontSize: 13),)):model.subscribeStatus==1&&
+                        child:  const Text('预约待审核',style: TextStyle(color: Colors.white,fontSize: 13),)):model.subscribeStatus==1&&
                         model.subscribeId!>=1?Container(
                         height: 45,
                         width: 90,
@@ -343,8 +337,7 @@ class _MySalaryPageState extends State<MySalaryPage> {
                           color: AppColor.themeTextColor,
                           borderRadius: const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child:  Text('已預約',style: TextStyle(color: Colors.white,fontSize: 13),)):SizedBox(),
-
+                        child:  const Text('已預約',style: TextStyle(color: Colors.white,fontSize: 13),)):SizedBox(),
                   ],
                 )
             ),

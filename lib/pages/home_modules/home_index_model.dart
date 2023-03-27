@@ -8,11 +8,11 @@ class HomeIndexModel {
   HomeIndexModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['code'] = this.code;
     data['message'] = this.message;
     if (this.data != null) {
@@ -33,20 +33,20 @@ class Data {
     if (json['banner'] != null) {
       banner = <Banner>[];
       json['banner'].forEach((v) {
-        banner!.add(new Banner.fromJson(v));
+        banner!.add(Banner.fromJson(v));
       });
     }
     if (json['notice'] != null) {
       notice = <Notice>[];
       json['notice'].forEach((v) {
-        notice!.add(new Notice.fromJson(v));
+        notice!.add(Notice.fromJson(v));
       });
     }
-    site = json['site'] != null ? new Site.fromJson(json['site']) : null;
+    site = json['site'] != null ? Site.fromJson(json['site']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.banner != null) {
       data['banner'] = this.banner!.map((v) => v.toJson()).toList();
     }
@@ -76,7 +76,7 @@ class Banner {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['cover_url'] = this.coverUrl;
@@ -103,7 +103,7 @@ class Notice {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['id'] = this.id;
     data['title'] = this.title;
     data['pic_url'] = this.picUrl;
@@ -126,7 +126,7 @@ class Site {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['address'] = this.address;
     data['mail'] = this.mail;
     data['tel'] = this.tel;

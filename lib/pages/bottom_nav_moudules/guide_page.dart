@@ -22,7 +22,7 @@ class _GuidePageState extends State<GuidePage> {
     // Get.offAll(LoginPage(),curve:Curves.linear,transition:Transition.zoom);
     getToken();
     super.initState();
-    _t = Timer(const Duration(milliseconds: 500), () {
+    _t = Timer(const Duration(milliseconds: 1), () {
     if(isLogin == false){
 
       Get.offAllNamed(AppRoutes.login,);
@@ -33,13 +33,11 @@ class _GuidePageState extends State<GuidePage> {
   }
 
   getToken()async{
-    print('token ======= ${await PersistentStorage().getStorage('token')}');
     if(await PersistentStorage().getStorage('token')==null){
       isLogin = false;
     }else{
       isLogin = true;
     }
-    print('islogin === ${isLogin}');
   }
 
   @override

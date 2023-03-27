@@ -15,12 +15,11 @@ import 'course_name_page.dart';
 
 class CourseCreatePage extends StatefulWidget {
 
-  ClassRoomList? model;
+  final ClassRoomList? model;
 
-  String type;
+  final String type;
 
-
-  CourseCreatePage(this.type,{this.model,Key? key}) : super(key: key);
+  const CourseCreatePage(this.type,{this.model,Key? key}) : super(key: key);
 
   @override
   State<CourseCreatePage> createState() => _CourseCreatePageState();
@@ -35,13 +34,13 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
   String startTime = '請選擇開始時間';
   String endTime = '請選擇落堂時間';
 
-
   TextEditingController goldTextEditingController = TextEditingController();
   TextEditingController addressTextEditingController = TextEditingController();
 
   var totalUser = 2;
+
   requestDataWithCreate()async{
-    var params;
+    Map<String, Object?> params;
     if(widget.type =='course.create'){
       params = {
         'method':widget.type,
@@ -99,11 +98,10 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('',),
+        // title: Text('',),
       ),
       body: ListView(
         children: [
-
         widget.type=='course.create'?Center(
             child: Text('新增課堂',style: TextStyle(color: AppColor.themeTextColor,fontSize: 25,fontWeight: FontWeight.w700),),
           ):Center(
@@ -113,7 +111,7 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
           const SizedBox(height: 15,),
           GestureDetector(
            onTap: ()async{
-           var data = await Get.to(CourseNamePage());
+           var data = await Get.to(const CourseNamePage());
            if(data!= null){
              print(data);
              courseName = data['course_name'];
@@ -151,7 +149,7 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
           const SizedBox(height: 15,),
           GestureDetector(
             onTap: ()async{
-              var data = await Get.to(ClassRoomCalendarPage());
+              var data = await Get.to(const ClassRoomCalendarPage());
               if(data!= null){
                 startDay = data;
                 setState(() {
@@ -348,11 +346,11 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
 
           const SizedBox(height: 15,),
           Container(
-            margin: EdgeInsets.only(left: 25),
+            margin: const EdgeInsets.only(left: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('課堂人數:'),
+                const Text('課堂人數:'),
                 CartStepperInt(
                   value: totalUser,
                   style: CartStepperStyle(
@@ -363,7 +361,7 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
                     if (count < 2) {
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
                       ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                        content: Text('總人數不能小於 2 '),
+                        content: const Text('總人數不能小於 2 '),
                         backgroundColor: AppColor.themeTextColor,
                       ));
                       return;
@@ -391,6 +389,7 @@ class _CourseCreatePageState extends State<CourseCreatePage> {
                 BotToast.showText(text: '請輸入完整的信息');
                 return;
               }
+
               print(courseId);
 
               requestDataWithCreate();

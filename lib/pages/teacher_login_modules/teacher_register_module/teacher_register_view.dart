@@ -131,7 +131,6 @@ class TeacherRegisterView extends GetView{
                     }, onConfirm: (date) {
 
                       String dateStr = '${date.year}-${date.month}-${date.day}';
-                      print('confirm ${dateStr}');
                       controller.birth = dateStr;
                       controller.birthController.text = dateStr;
                       controller.update();
@@ -238,9 +237,10 @@ class TeacherRegisterView extends GetView{
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 // color: Colors.red,
-                alignment: Alignment.bottomCenter,
+                width: Get.width,
+                // alignment: Alignment.bottomCenter,
                 child: Image.asset('images/yuyuebg.png',fit: BoxFit.fill,),
               )
               // Expanded(child: Container(
@@ -252,7 +252,7 @@ class TeacherRegisterView extends GetView{
           ),
         );
       }),
-    );;
+    );
   }
 
 }

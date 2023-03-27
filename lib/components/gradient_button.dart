@@ -29,7 +29,7 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     //确保colors数组不空
-    List<Color> _colors =
+    List<Color> colors1 =
         colors ?? [
           AppColor.registerBgColor,
           AppColor.themeColor,
@@ -40,14 +40,14 @@ class GradientButton extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: _colors),
+            colors: colors1),
         borderRadius: borderRadius,
         //border: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       ),
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          splashColor: _colors.last,
+          splashColor: colors1.last,
           highlightColor: Colors.transparent,
           borderRadius: borderRadius,
           onTap: onPressed,

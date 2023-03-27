@@ -44,7 +44,7 @@ class _ChangeAvatarPageState extends State<ChangeAvatarPage> {
       'type':'image',
       'file':multipartFile,
     });
-    var json = await DioManager().kkRequest(Address.upload,bodyParams:formData);
+    var json = await DioManager().kkRequest(Address.upload,bodyParams:formData,isShowLoad: true);
     return json;
   }
   /// 更新頭像
@@ -54,9 +54,15 @@ class _ChangeAvatarPageState extends State<ChangeAvatarPage> {
       'avatar':avatar,
     };
     var json = await DioManager().kkRequest(Address.hostAuth,bodyParams: params,isShowLoad: true);
-    BotToast.showText(text: json['message']);
-    eventBus.fire(EventFn('headerRefresh'));
+    if(json['code'] == 200){
 
+      Get.back();
+      BotToast.showText(text: '上傳成功');
+    }else{
+      BotToast.showText(text: json['message']);
+    }
+
+    eventBus.fire(EventFn('headerRefresh'));
   }
 
   /// 上传图片
@@ -122,18 +128,20 @@ class _ChangeAvatarPageState extends State<ChangeAvatarPage> {
            padding: const EdgeInsets.all(0),
            children: [
              const SizedBox(height: 25,),
-             Container(
-               width: 160,
-               height: 160,
-               clipBehavior: Clip.hardEdge,
-               decoration: const BoxDecoration(
-                   borderRadius: BorderRadius.all(Radius.circular(80))
-               ),
-               child: CachedNetworkImage(
-                 imageUrl: widget.headerUrl,
-                 placeholder: (context, url) => const CircularProgressIndicator(),
-                 errorWidget: (context, url, error) => const Icon(Icons.error),
-                 fit: BoxFit.cover,
+             Center(
+               child: Container(
+                 width: 160,
+                 height: 160,
+                 clipBehavior: Clip.hardEdge,
+                 decoration: const BoxDecoration(
+                     borderRadius: BorderRadius.all(Radius.circular(80))
+                 ),
+                 child: CachedNetworkImage(
+                   imageUrl: widget.headerUrl,
+                   placeholder: (context, url) => const CircularProgressIndicator(),
+                   errorWidget: (context, url, error) => const Icon(Icons.error),
+                   fit: BoxFit.cover,
+                 ),
                ),
              ),
              const SizedBox(height: 25,),
@@ -199,8 +207,8 @@ class _ChangeAvatarPageState extends State<ChangeAvatarPage> {
                  ),
                ),
              ),
-             const SizedBox(height: 55,),
-             Container(
+             const SizedBox(height: 100,),
+             SizedBox(
                // alignment: Alignment.bottomCenter,
                width: Get.width,
                child: Image.asset('images/yuyuebg.png',fit: BoxFit.cover,),

@@ -39,7 +39,7 @@ class _CourseNamePageState extends State<CourseNamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('課堂名稱'),
+        title: const Text('課堂名稱'),
       ),
       body: ListView.builder(itemBuilder: _buildListItem,itemCount: dataArr.length,),
     );
@@ -49,7 +49,7 @@ class _CourseNamePageState extends State<CourseNamePage> {
     var json = dataArr[index];
 
     return ListTile(
-      title: Text('${json['course_name']}'),trailing: Icon(Icons.arrow_forward_ios,size: 15,),
+      title: Text('${json['course_name']}'),trailing: const Icon(Icons.arrow_forward_ios,size: 15,),
       onTap: (){
         Get.back(result: {'course_id':json['course_id'],'course_name':json['course_name']});
       },

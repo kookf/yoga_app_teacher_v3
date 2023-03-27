@@ -26,11 +26,11 @@ class MaterialFooter1 extends Footer {
     extent: 72.0,
     triggerDistance: 72.0,
     completeDuration: completeDuration == null
-        ? Duration(
+        ? const Duration(
       milliseconds: 300,
     )
         : completeDuration +
-        Duration(
+        const Duration(
           milliseconds: 300,
         ),
     enableHapticFeedback: enableHapticFeedback,
@@ -107,15 +107,17 @@ class MaterialFooterWidgetState extends State<MaterialFooterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_noMore) return  Container(
+    if (_noMore) {
+      return  Container(
       width: MediaQuery.of(context).size.width,
       height: 200,
       alignment: Alignment.center,
 
-      margin: EdgeInsets.only(bottom: 0),
+      margin: const EdgeInsets.only(bottom: 0),
       // color: Colors.yellow,
-      child: Text('我是有底线的~',style: TextStyle(fontSize: 13),),
+      child: const Text('我是有底線的~',style: TextStyle(fontSize: 13),),
     );
+    }
     // 是否为垂直方向
     bool isVertical = _axisDirection == AxisDirection.down ||
         _axisDirection == AxisDirection.up;

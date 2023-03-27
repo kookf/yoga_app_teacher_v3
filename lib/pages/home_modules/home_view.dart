@@ -7,7 +7,6 @@ import '../../services/address.dart';
 import 'home_controller.dart';
 import 'notice_page.dart';
 
-
 class HomeView extends GetView{
   @override
   final HomeController controller = Get.put(HomeController());
@@ -57,7 +56,7 @@ class HomeView extends GetView{
                   child: Column(
                     children: [
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(8))
                         ),
                         clipBehavior: Clip.hardEdge,
@@ -75,7 +74,7 @@ class HomeView extends GetView{
                           ),
                           itemBuilder: (BuildContext context,int index){
                             return  Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Colors.white,
                                   // borderRadius: BorderRadius.all(Radius.circular(8))
                               ),
@@ -153,21 +152,17 @@ class HomeView extends GetView{
                       const SizedBox(height: 10,),
 
                       Container(
+                        margin: const EdgeInsets.only(top: 5),
                         child: Text('地址:${controller.homeIndexModel?.data?.site?.address}',style: TextStyle(color: AppColor.themeTextColor),),
                       ),
                       Container(
+                        margin: const EdgeInsets.only(top: 5),
                         child: Text('Tel: ${controller.homeIndexModel?.data?.site?.tel}',style: TextStyle(color: AppColor.themeTextColor),),
                       ),
                       Container(
+                        margin: const EdgeInsets.only(top: 5),
                         child: Text('郵箱: ${controller.homeIndexModel?.data?.site?.mail}',style: TextStyle(color: AppColor.themeTextColor),),
                       ),
-
-               //        Text('''
-               // 地址:${controller.homeIndexModel?.data?.site?.address}
-               // Tel: ${controller.homeIndexModel?.data?.site?.tel}
-               // 郵箱: ${controller.homeIndexModel?.data?.site?.mail}
-               //  ''',style: TextStyle(color: AppColor.themeTextColor),),
-
                     ],
                   ),
                 ),

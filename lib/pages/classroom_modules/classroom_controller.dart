@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
@@ -70,8 +69,6 @@ class ClassroomController extends GetxController{
     var data = await Get.to(const ClassRoomCalendarPage());
     if(data!=null){
       initDatetime = DateTime.parse(data);
-      print(initDatetime);
-      print(DateTime.now());
       dataArr.clear();
       requestDataWithCourseList(startDay: data,page: 1);
     }
@@ -99,10 +96,6 @@ class ClassroomController extends GetxController{
       }
       print('event.obj hh ===== ${event.obj}');
     });
-
-    // dataArr.add(0);
-    // dataArr.add(0);
-    // dataArr.add(0);
   }
 
 }

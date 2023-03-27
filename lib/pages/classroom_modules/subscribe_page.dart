@@ -4,7 +4,6 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:yoga_app/pages/classroom_modules/subscribe_model.dart';
-import 'package:yoga_app/utils/persisten_storage.dart';
 import '../../common/colors.dart';
 import '../../components/custom_footer.dart';
 import '../../services/address.dart';
@@ -12,16 +11,15 @@ import '../../services/dio_manager.dart';
 
 class SubscribePage extends StatefulWidget {
 
-  String title;
+  final String title;
 
-  int courseTimeId;
+  final int courseTimeId;
 
-
-
-  SubscribePage(this.title,this.courseTimeId,{Key? key}) : super(key: key);
+  const SubscribePage(this.title,this.courseTimeId,{Key? key}) : super(key: key);
 
   @override
   State<SubscribePage> createState() => _SubscribePageState();
+
 }
 
 class _SubscribePageState extends State<SubscribePage> {
@@ -112,7 +110,6 @@ class _SubscribePageState extends State<SubscribePage> {
     });
   }
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -165,12 +162,7 @@ class _SubscribePageState extends State<SubscribePage> {
     return Stack(
       children: [
         Center(
-          child: Container(
-            // height: 140,
-            // alignment: Alignment.topCenter,
-            // color: Colors.red,
-            child: Image.asset('images/ic_bg.png',width: Get.width,fit: BoxFit.cover,),
-          ),
+          child: Image.asset('images/ic_bg.png',width: Get.width,fit: BoxFit.cover,),
         ),
         // Image.asset('images/appbar_bg.png',fit: BoxFit.fitWidth,width: Get.width,),
         Align(
@@ -289,7 +281,7 @@ class _SubscribePageState extends State<SubscribePage> {
                             fontSize: 16,color: AppColor.themeTextColor),),
                       ],
                     ),
-                    model.signId==0?Container(
+                    model.signId==0?SizedBox(
                       width: 90,
                       // color: Colors.red,
                       child: Center(
@@ -306,7 +298,7 @@ class _SubscribePageState extends State<SubscribePage> {
                           ),child: const Text('打卡',style: TextStyle(color: Colors.white),),
                         ),
                       ),
-                    ):model.signId!>=1?Container(
+                    ):model.signId!>=1?SizedBox(
                      width: 100,
                      // color: Colors.red,
                      child: Center(
@@ -323,7 +315,7 @@ class _SubscribePageState extends State<SubscribePage> {
                          ),child: const Text('取消打卡',style: TextStyle(color: Colors.white),),
                        ),
                      ),
-                   ):SizedBox(),
+                   ):const SizedBox(),
                   ],
                 )
             ),

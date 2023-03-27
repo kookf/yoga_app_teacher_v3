@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:yoga_app/pages/mine_modules/class_record_module/class_record_model.dart';
@@ -7,7 +6,6 @@ import '../../../components/custom_footer.dart';
 import '../../../services/address.dart';
 import '../../../services/dio_manager.dart';
 import 'package:get/get.dart';
-
 import '../../classroom_modules/classroom_calendar_page.dart';
 class ClassRecordPage extends StatefulWidget {
   const ClassRecordPage({Key? key}) : super(key: key);
@@ -31,9 +29,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
   /*
   *
   * 预约 status=0,1  预约 0,1 取消 2,3
-  *
     上课 sign = 1,  0缺席
-
   * */
 
   var status = '0,1';
@@ -104,13 +100,13 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
       stretch: true,
       expandedHeight: 215,
       elevation: 0,
-      actions: [
-        TextButton(onPressed: (){
-           status = '';
-           sign = '';
-           requestDataWithSignList();
-        }, child:Text('顯示全部',style: TextStyle(color: AppColor.themeColor),))
-      ],
+      // actions: [
+        // TextButton(onPressed: (){
+        //    status = '';
+        //    sign = '';
+        //    requestDataWithSignList();
+        // }, child:Text('顯示全部',style: TextStyle(color: AppColor.themeColor),))
+      // ],
       // backgroundColor:AppColor.themeColor,
       snap: false,
       iconTheme: const IconThemeData(
@@ -276,7 +272,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                 ),
                 GestureDetector(
                   onTap: ()async{
-                    var data = await Get.to(ClassRoomCalendarPage());
+                    var data = await Get.to(const ClassRoomCalendarPage());
                     if(data!= null){
                       startDay = data;
                       requestDataWithSignList();
@@ -380,7 +376,8 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                           ),
                           height: 35,
                           width: 80,
-                          child:   Text(selectIndex==1?'已預約':selectIndex==2?'已上課':selectIndex==3?'缺席':'已取消',style: TextStyle(color: Colors.white),),
+                          child:   Text(selectIndex==1?'已預約':selectIndex==2?'已上課'
+                              :selectIndex==3?'缺席':'已取消',style: const TextStyle(color: Colors.white),),
                         ),
                       ),
                     )

@@ -33,7 +33,7 @@ class ClassroomView extends GetView{
           // emptyWidget:controller.dataArr.isEmpty?const Center(child:Text('暫無課程')):null,
           slivers: [
             SliverToBoxAdapter(
-              child: Container(
+              child: SizedBox(
                 // color: Colors.red,
                 height:200,
                 // color: Colors.yellowAccent,
@@ -178,8 +178,7 @@ class ClassroomView extends GetView{
                         ],
                       ),
                       Expanded(child: Container(
-                        margin: EdgeInsets.only(left: 50),
-
+                        margin: const EdgeInsets.only(left: 50),
                         // color: Colors.red,
                         child: Center(
                           child: MaterialButton(onPressed: () {

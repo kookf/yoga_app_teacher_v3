@@ -13,18 +13,16 @@ import 'bottom_controller.dart';
 
 class TabPage extends GetView{
 
-   int _currentIndex = 0;
 
    final pageController = PageController();
 
-  TabPage({super.key});
+   TabPage({super.key});
 
-   DateTime? _lastTime;
 
    Future<bool> _isExit()async {
-     if (_lastTime == null ||
-         DateTime.now().difference(_lastTime!) > const Duration(seconds: 2)) {
-       _lastTime = DateTime.now();
+     if (controller.lastTime == null ||
+         DateTime.now().difference(controller.lastTime!) > const Duration(seconds: 2)) {
+       controller.lastTime = DateTime.now();
        BotToast.showText(text: '在按一次退出應用');
        return Future.value(false);
      }
@@ -37,10 +35,8 @@ class TabPage extends GetView{
   }
 
   void onPageChanged(int index) {
-    // setState(() {
-      _currentIndex = index;
+      controller.currentIndex = index;
       controller.update();
-    // });
   }
 
   @override
@@ -75,7 +71,7 @@ class TabPage extends GetView{
         ),
         bottomNavigationBar: BottomNavigationBar(
 
-          currentIndex: _currentIndex,//配置对应的索引值选中
+          currentIndex: controller.currentIndex,//配置对应的索引值选中
           onTap: onTap,
           backgroundColor: AppColor.themeColor,
           iconSize: 20.0,//icon的大小

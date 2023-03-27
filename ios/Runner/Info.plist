@@ -8,6 +8,11 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Yoga App</string>
+    <key>NSCameraUsageDescription</key>
+    <string>允許我們訪問您的相機來上傳頭像，支付憑證。</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>允許我們訪問您的相冊來上傳頭像，支付憑證。</string>
+    
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

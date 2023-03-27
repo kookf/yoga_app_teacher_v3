@@ -208,7 +208,7 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
             var timeFormat = DateFormat("yyyy-MM-dd");
             var timeStr = timeFormat.format(_singleDatePickerValueWithDefaultValue[0]!);
             print(timeStr);
-            Get.back(result: '${timeStr}');
+            Get.back(result: timeStr);
           },
           child:Center(
             child: Container(
@@ -220,7 +220,7 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
                 AppColor.themeColor,
                 AppColor.themeColor,
               ],
-                child: Text('确定'),),
+                child: const Text('确定'),),
             ),
           ),
         )
@@ -260,17 +260,4 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
 
   int selectedValue = 0;
 
-  String _getValueText(
-      CalendarDatePicker2Type datePickerType,
-      List<DateTime?> values,
-      ) {
-    // var valueText = (values.isNotEmpty ? values[0] : null)
-    //     .toString()
-    //     .replaceAll('00:00:00.000', '');
-
-    var timeFormat = DateFormat("yyyy-MM-dd");
-    var valueText = timeFormat.format(values[0]!);
-
-    return valueText;
-  }
 }

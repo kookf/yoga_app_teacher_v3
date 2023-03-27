@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/hexcolor.dart';
 import 'colors.dart';
 
 final ThemeData appThemeData = ThemeData(

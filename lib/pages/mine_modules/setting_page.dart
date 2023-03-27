@@ -60,6 +60,7 @@ class _SettingPageState extends State<SettingPage> {
     var json = await DioManager().kkRequest(Address.hostAuth,bodyParams: params);
     if(json['code'] == 200){
       BotToast.showText(text: '修改成功');
+      Get.back();
     }else{
       BotToast.showText(text: json['message']);
     }
@@ -264,7 +265,8 @@ class _SettingPageState extends State<SettingPage> {
                  ),
                ),
              ),
-              Container(
+              const SizedBox(height: 90,),
+              SizedBox(
                 // height: 200,
                 // color: Colors.red,
                 width: Get.width,
