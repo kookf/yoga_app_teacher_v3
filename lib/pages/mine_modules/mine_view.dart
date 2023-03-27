@@ -37,11 +37,11 @@ class MineView extends GetView{
                   ),
                   Align(alignment: const Alignment(0, -0.5),
                     child: Container(
-                    width: 160,
-                   height: 160,
+                    width: 140,
+                    height: 140,
                    clipBehavior: Clip.hardEdge,
                    decoration: const BoxDecoration(
-                     borderRadius: BorderRadius.all(Radius.circular(80))
+                     borderRadius: BorderRadius.all(Radius.circular(70))
                    ),
                    child: CachedNetworkImage(
                      imageUrl: "${Address.homeHost}/storage/${controller.userModel?.data?.avatar}",

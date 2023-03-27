@@ -172,8 +172,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           ),
           Expanded(child:Container(
             // height: 200,
-            alignment: Alignment.bottomRight,
-            child: Image.asset('images/yuyuebg.png'),
+            width: Get.width,
+            // alignment: Alignment.bottomCenter,
+            child: Image.asset('images/yuyuebg.png',fit: BoxFit.cover,),
           ),)
 
         ],

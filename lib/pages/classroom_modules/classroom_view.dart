@@ -157,26 +157,46 @@ class ClassroomView extends GetView{
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                   width: Get.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child:Row(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 15,left: 15,),
-                        child: Text('${model.name}',style: appThemeData.textTheme.bodyText1!.copyWith(
-                            color: AppColor.themeTextColor,fontWeight: FontWeight.w700,fontSize: 22
-                        ),),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 10,left: 15,bottom: 15),
-                        child: Text('開堂時間：${model.startDay} ${model.startTime}',style: appThemeData.textTheme.bodyText1!.copyWith(
-                            color: AppColor.themeTextColor,fontWeight: FontWeight.w700
-                        ),),
-                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 15,left: 15,),
+                            child: Text('${model.name}',style: appThemeData.textTheme.bodyText1!.copyWith(
+                                color: AppColor.themeTextColor,fontWeight: FontWeight.w700,fontSize: 22
+                            ),),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 10,left: 15,bottom: 15),
+                            child: Text('開堂時間：${model.startDay} ${model.startTime}',style: appThemeData.textTheme.bodyText1!.copyWith(
+                                color: AppColor.themeTextColor,fontWeight: FontWeight.w700
+                            ),),
+                          ),
 
+                        ],
+                      ),
+                      Expanded(child: Container(
+                        margin: EdgeInsets.only(left: 50),
+
+                        // color: Colors.red,
+                        child: Center(
+                          child: MaterialButton(onPressed: () {
+                            Get.to(SubscribePage(model.name!,model.courseTimeId!,));
+
+                          },color: AppColor.themeColor,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),child: const Text('預約的學生',style: TextStyle(color: Colors.white),),
+                          ),
+                        ),
+                      )),
                     ],
                   ),
                 ),
               ),
+
               Container(
                 width: Get.width,
                 height: 0.5,

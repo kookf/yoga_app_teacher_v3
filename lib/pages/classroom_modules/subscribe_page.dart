@@ -289,7 +289,7 @@ class _SubscribePageState extends State<SubscribePage> {
                             fontSize: 16,color: AppColor.themeTextColor),),
                       ],
                     ),
-                   model.signId==0?Container(
+                    model.signId==0?Container(
                       width: 90,
                       // color: Colors.red,
                       child: Center(

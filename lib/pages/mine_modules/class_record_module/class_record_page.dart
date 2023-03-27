@@ -7,6 +7,8 @@ import '../../../components/custom_footer.dart';
 import '../../../services/address.dart';
 import '../../../services/dio_manager.dart';
 import 'package:get/get.dart';
+
+import '../../classroom_modules/classroom_calendar_page.dart';
 class ClassRecordPage extends StatefulWidget {
   const ClassRecordPage({Key? key}) : super(key: key);
 
@@ -18,7 +20,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
 
   int selectIndex = 1;
 
-  String startDay = '';
 
   EasyRefreshController easyRefreshController = EasyRefreshController();
 
@@ -29,17 +30,18 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
   /// 获取学生上课记录列表
   /*
   *
-  * 预约 status=0,1
-    上课 status=0,1 sign=1
-    缺席 status=0,1 sign_no=1
-    取消 status=2,3
+  * 预约 status=0,1  预约 0,1 取消 2,3
+  *
+    上课 sign = 1,  0缺席
+
   * */
 
   var status = '0,1';
   var sign = '';
-  var signNo = '';
+  String startDay = '';
 
-  requestDataWithSignList({String? startDay,int page = 1,})async{
+
+  requestDataWithSignList({int page = 1,})async{
 
     var params = {
       'method':'subscribe.list',
@@ -47,7 +49,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
       'course_time_id':'',
       'status':status,
       'sign':sign,
-      'sign_no':signNo,
+      'start_day':startDay
     };
 
     var json = await DioManager().kkRequest(Address.hostAuth,bodyParams: params);
@@ -106,7 +108,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
         TextButton(onPressed: (){
            status = '';
            sign = '';
-           signNo = '';
            requestDataWithSignList();
         }, child:Text('顯示全部',style: TextStyle(color: AppColor.themeColor),))
       ],
@@ -190,7 +191,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                   onTap: (){
                     status = '0,1';
                     sign = '';
-                    signNo = '';
                     requestDataWithSignList();
                     setState(() {
                       selectIndex =1;
@@ -211,9 +211,8 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    status = '0,1';
+                    status = '';
                     sign = '1';
-                    signNo = '';
 
                     requestDataWithSignList();
                     setState(() {
@@ -234,9 +233,8 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    status = '0,1';
-                    sign = '';
-                    signNo = '1';
+                    status = '';
+                    sign = '0';
                     requestDataWithSignList();
                     setState(() {
                       selectIndex =3;
@@ -259,7 +257,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
 
                     status = '2,3';
                     sign = '';
-                    signNo = '';
                     requestDataWithSignList();
                     setState(() {
                       selectIndex =4;
@@ -277,8 +274,16 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                     Colors.white:AppColor.themeTextColor,fontWeight: FontWeight.w700),),
                   ),
                 ),
-                Image.asset('images/ic_classroom_right.png',width: 35,height: 35,),
-
+                GestureDetector(
+                  onTap: ()async{
+                    var data = await Get.to(ClassRoomCalendarPage());
+                    if(data!= null){
+                      startDay = data;
+                      requestDataWithSignList();
+                    }
+                  },
+                  child:Image.asset('images/ic_classroom_right.png',width: 35,height: 35,),
+                )
               ],
             ),
           ),

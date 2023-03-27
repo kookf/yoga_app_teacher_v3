@@ -108,29 +108,29 @@ class MessagePage extends GetView{
           iconColor: AppColor.themeColor,
           collapsedIconColor: Colors.grey,
           initiallyExpanded: true,
-          title:Text(str,style: TextStyle(color: HexColor('#D15299'),
+          title:Text(str,style: TextStyle(color: AppColor.themeColor,
               fontSize: 19,fontWeight: FontWeight.w700),),
           children: [
             Container(
               margin: const EdgeInsets.only(left: 25,top: 5),
-              child: Text('${model.msg}',style: TextStyle(color: HexColor('#D15299'),
+              child: Text('${model.msg}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 19,fontWeight: FontWeight.w700),),
             ),
             SizedBox(height: 15,),
 
             model.coursesName==null?const SizedBox():Container(
               margin: const EdgeInsets.only(left: 25,top: 0),
-              child: Text('課程:${model.coursesName}',style: TextStyle(color: AppColor.themeTextColor,
+              child: Text('課程:${model.coursesName}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 16,fontWeight: FontWeight.w700),),
             ),
             model.coursesName==null?const SizedBox():Container(
               margin: const EdgeInsets.only(left: 25,top: 5),
-              child: Text('開始日期：${model.startDay}',style: TextStyle(color: AppColor.themeTextColor,
+              child: Text('開始日期：${model.startDay}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 16,fontWeight: FontWeight.w700),),
             ),
             model.coursesName==null?const SizedBox():Container(
               margin: const EdgeInsets.only(left: 25,top: 5,bottom: 15),
-              child: Text('導師：${model.teacherName}',style: TextStyle(color: AppColor.themeTextColor,
+              child: Text('導師：${model.teacherName}',style: TextStyle(color: AppColor.themeColor,
                   fontSize: 16,fontWeight: FontWeight.w700),),
             ),
             SizedBox(height: 5,),

@@ -201,7 +201,7 @@ class _ChangeAvatarPageState extends State<ChangeAvatarPage> {
              ),
              const SizedBox(height: 55,),
              Container(
-               alignment: Alignment.bottomCenter,
+               // alignment: Alignment.bottomCenter,
                width: Get.width,
                child: Image.asset('images/yuyuebg.png',fit: BoxFit.cover,),
              ),
