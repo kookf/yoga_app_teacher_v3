@@ -58,7 +58,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		ovd5k2G+zNn3ShBDlapwMvRaIGM=
+		Lg2jYMxQvUnYfKZfLnDBr9KWCM8=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		l/XK5HU9kL4fFMzsixQz9CVVlGg=
+		G3kHrlprILtafFx0yapIdTZuGHU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -266,7 +266,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		BScUDnmyDTwv9uies0P/MiCUXOg=
+		QeUMMOr0506zG9FB7VftUuac3lM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/bruno/assets/fonts/Bebas-Regular.ttf</key>
 		<data>
@@ -1614,7 +1614,7 @@
 		</data>
 		<key>Frameworks/image_pickers.framework/image_pickers</key>
 		<data>
-		A53Qa7KiQPe8G6ILm6uiru7mWJ0=
+		2ZOjmeQ6zPRSNJKD3AetNFj1gj8=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -1650,7 +1650,7 @@
 		</data>
 		<key>Frameworks/sqflite.framework/sqflite</key>
 		<data>
-		u278+ofvf3QTrr2oVucyM4ioiic=
+		3Z4fL2eOeG8N8KFKJWjuW9g2Mis=
 		</data>
 		<key>Frameworks/vibration.framework/Info.plist</key>
 		<data>
@@ -1774,7 +1774,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DCAWvg5VKr12+f+DqfTlYq8rMLY8hhk/J+1zbY87bns=
+			pZ93DraDngTwmv44DjWDNIOrn88hpEY2qZJUM6r1sh4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1788,7 +1788,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YBt/ksRbuWgx8N7A45Wbj59+Vhlt8sdWW3T2/WN2XOI=
+			AgGeGMYZpjpqhf0b/tiiYaicPrwWZjMbf08uRTpHIv8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -2138,7 +2138,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			c3GsJ6KVnX+r3Pnhz1vy3xIuo6oJ+voU70errF0ywXo=
+			0LYzQ5VBujo0+HdLpd1lNdB+alOLe6XMs168ScKvHjY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/bruno/assets/fonts/Bebas-Regular.ttf</key>
@@ -4389,7 +4389,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JEGPTdx7lsYUy2NH7ktxC0S30geBDVK1vNrLpnE+nyk=
+			M1xR0TJhqqeujkHaIGjGzwmu2JZ/Q4T8Gl/9y+E4zF8=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
@@ -4452,7 +4452,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			M9uV8OUmGjA0nE9klqsgiZcQyB4IwHp/XheQJdBx/tU=
+			Pj7+2DtIMDQuaTnx6Laoevdq0g9Y+HbdkWf+D4LLx6Y=
 			</data>
 		</dict>
 		<key>Frameworks/vibration.framework/Info.plist</key>

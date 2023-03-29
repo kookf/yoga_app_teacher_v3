@@ -14,12 +14,11 @@ class LoginView extends GetView{
    LoginView({super.key});
 
    @override
+
    final LoginController controller = Get.put(LoginController());
 
-
-
-  @override
-  Widget build(BuildContext context) {
+   @override
+   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       // appBar: AppBar(
@@ -86,7 +85,7 @@ class LoginView extends GetView{
                       //设置四周圆角 角度
                       borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                       //设置四周边框
-                      border:  Border.all(width: 1, color: AppColor.textFieldBorderColor),
+                      border: Border.all(width: 1, color: AppColor.textFieldBorderColor),
                     ),
                     child: TextField(
                       controller: controller.emailTextEditingController,
@@ -95,7 +94,7 @@ class LoginView extends GetView{
                       ],
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: '用戶名稱'
+                        hintText: '郵件'
                       ),
                     ),
                   ),
@@ -158,7 +157,6 @@ class LoginView extends GetView{
                         startLoading();
 
                         controller.requestDataWithLogin().then((value)async => {
-
                           if(value['code']==200){
                             await PersistentStorage().setStorage('token', value['data']['token']),
                             // Get.offAll(const Tabs()),

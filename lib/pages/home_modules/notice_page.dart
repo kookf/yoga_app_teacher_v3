@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import '../../services/address.dart';
 import '../../services/dio_manager.dart';
-
 class NoticePage extends StatefulWidget {
 
-  final int id;
 
-  const NoticePage(this.id,{Key? key}) : super(key: key);
+  int id;
+  NoticePage(this.id,{Key? key}) : super(key: key);
 
   @override
   State<NoticePage> createState() => _NoticePageState();
@@ -20,7 +19,7 @@ class _NoticePageState extends State<NoticePage> {
 
   /// 獲取公告詳情
 
-  Map? _json;
+  var _json;
   requestDataWithNoticeDetail()async{
     var params = {
       'method':'notice.info',
@@ -45,7 +44,9 @@ class _NoticePageState extends State<NoticePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.white,
+      body: ListView(
+        padding: EdgeInsets.all(0),
         children: [
           Container(
               height: MediaQuery.of(context).padding.top+kToolbarHeight,
@@ -65,8 +66,6 @@ class _NoticePageState extends State<NoticePage> {
                     }, icon: const Icon(Icons.arrow_back_ios),color: Colors.white,),
                   ),
 
-
-
                   Container(
                     padding: const EdgeInsets.only(top: 35),
                     child: const Text('公告',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w500),),
@@ -78,15 +77,14 @@ class _NoticePageState extends State<NoticePage> {
           ),
           const SizedBox(height: 25,),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.transparent,
               // borderRadius: BorderRadius.all(Radius.circular(8))
             ),
             clipBehavior: Clip.hardEdge,
             padding: const EdgeInsets.all(15),
             child: CachedNetworkImage(
-              imageUrl: '${Address.homeHost}'
-                  '${_json?['data']['pic_url']}',
+              imageUrl: '${_json['data']['pic_url']}',
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -96,12 +94,12 @@ class _NoticePageState extends State<NoticePage> {
           ),
 
           Center(
-            child: Text('${_json?['data']['title']}'),
+            child: Text('${_json['data']['title']}'),
           ),
 
           Container(
-            padding: const EdgeInsets.only(left: 25,right: 25),
-            child: HtmlWidget(_json?['data']['body']??''),
+            padding: EdgeInsets.only(left: 25,right: 25),
+            child: HtmlWidget(_json['data']['body']??''),
           ),
         ],
       ),

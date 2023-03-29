@@ -24,7 +24,6 @@ class _GuidePageState extends State<GuidePage> {
     super.initState();
     _t = Timer(const Duration(milliseconds: 1), () {
     if(isLogin == false){
-
       Get.offAllNamed(AppRoutes.login,);
     }else{
       Get.offAllNamed(AppRoutes.bottomMain);
