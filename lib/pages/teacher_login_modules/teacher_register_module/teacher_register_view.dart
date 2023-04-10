@@ -30,7 +30,7 @@ class TeacherRegisterView extends GetView{
               Container(
                 padding: const EdgeInsets.only(top: 25),
                 alignment: Alignment.center,
-                child: Text('老师註冊',style: TextStyle(fontSize: 31,color: AppColor.themeColor,fontWeight: FontWeight.w700),),
+                child: Text('老師註冊',style: TextStyle(fontSize: 31,color: AppColor.themeColor,fontWeight: FontWeight.w700),),
               ),
               const SizedBox(height: 25,),
               Center(

@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import '../../lang/message.dart';
 import '../../services/address.dart';
 import '../../services/dio_manager.dart';
 class NoticePage extends StatefulWidget {
@@ -45,8 +47,7 @@ class _NoticePageState extends State<NoticePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ListView(
-        padding: EdgeInsets.all(0),
+      body:  Column(
         children: [
           Container(
               height: MediaQuery.of(context).padding.top+kToolbarHeight,
@@ -65,42 +66,49 @@ class _NoticePageState extends State<NoticePage> {
                       Get.back();
                     }, icon: const Icon(Icons.arrow_back_ios),color: Colors.white,),
                   ),
-
                   Container(
                     padding: const EdgeInsets.only(top: 35),
-                    child: const Text('公告',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w500),),
+                    child: const Text(I18nContent.noticeDetailTitleLabel,
+                      style: TextStyle(fontSize: 19,fontWeight: FontWeight.w500),),
                   ),
 
 
                 ],
               )
           ),
-          const SizedBox(height: 25,),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              // borderRadius: BorderRadius.all(Radius.circular(8))
-            ),
-            clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.all(15),
-            child: CachedNetworkImage(
-              imageUrl: '${_json['data']['pic_url']}',
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
+          _json==null?const Center(child:CupertinoActivityIndicator())
+              :Expanded(child:  ListView(
+            padding: const EdgeInsets.all(0),
+            children: [
+
+              const SizedBox(height: 25,),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                  // borderRadius: BorderRadius.all(Radius.circular(8))
+                ),
+                clipBehavior: Clip.hardEdge,
+                padding: const EdgeInsets.all(15),
+                child: CachedNetworkImage(
+                  imageUrl: '${_json?['data']['pic_url']}',
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  fit: BoxFit.cover,
+                ),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              fit: BoxFit.cover,
-            ),
-          ),
 
-          Center(
-            child: Text('${_json['data']['title']}'),
-          ),
+              Center(
+                child: Text('${_json?['data']['title']}'),
+              ),
 
-          Container(
-            padding: EdgeInsets.only(left: 25,right: 25),
-            child: HtmlWidget(_json['data']['body']??''),
-          ),
+              Container(
+                padding: const EdgeInsets.only(left: 25,right: 25),
+                child: HtmlWidget(_json?['data']['body']??''),
+              ),
+            ],
+          )),
         ],
       ),
     );

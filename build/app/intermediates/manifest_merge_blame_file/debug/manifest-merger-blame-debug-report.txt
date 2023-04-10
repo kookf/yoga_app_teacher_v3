@@ -69,7 +69,7 @@
 40-->[androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 41        android:debuggable="true"
 42        android:icon="@mipmap/ic_launcher"
-43        android:label="yoga_app"
+43        android:label="MeMoYoga導師版"
 44        android:networkSecurityConfig="@xml/net_sec"
 44-->[:image_pickers] /Users/mac/Desktop/teacher/yoga_app_teacher/build/image_pickers/intermediates/merged_manifest/debug/AndroidManifest.xml:31:9-53
 45        android:requestLegacyExternalStorage="true" >
