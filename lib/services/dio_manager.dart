@@ -73,6 +73,7 @@ class DioManager{
 
       if(error.response?.statusCode==302){
         Get.offAllNamed(AppRoutes.login);
+        await PersistentStorage().removeStorage('token');
       }
 
       BotToast.closeAllLoading();

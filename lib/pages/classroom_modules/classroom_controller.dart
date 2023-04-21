@@ -19,7 +19,7 @@ class ClassroomController extends GetxController{
   ///
   int selectionTab = 1;
 
-  // var page = 1;
+  var page = 1;
 
   String startDay = '';
 
@@ -30,7 +30,7 @@ class ClassroomController extends GetxController{
   DateTime initDatetime = DateTime.now();
 
 
-  requestDataWithCourseList({String? startDay,int page = 1})async{
+  requestDataWithCourseList()async{
     var params = {
       'method':'course.list',
       'page':page,
@@ -56,13 +56,12 @@ class ClassroomController extends GetxController{
     update();
   }
   onRefresh()async{
-    int page = 1 ;
-    requestDataWithCourseList(page: page,startDay: startDay);
+     page = 1 ;
+    requestDataWithCourseList();
   }
   onLoad()async{
-    int page = 1;
     page++;
-    requestDataWithCourseList(startDay:startDay,page: page);
+    requestDataWithCourseList();
   }
 
   jumpToCalendar()async{
@@ -70,7 +69,9 @@ class ClassroomController extends GetxController{
     if(data!=null){
       initDatetime = DateTime.parse(data);
       dataArr.clear();
-      requestDataWithCourseList(startDay: data,page: 1);
+      startDay  = data;
+      page = 1;
+      requestDataWithCourseList();
     }
     update();
   }
@@ -82,17 +83,18 @@ class ClassroomController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    var nowDateTime = DateTime.now();
-    var timeFormat = DateFormat("yyyy-MM-dd");
-    var timeStr = timeFormat.format(nowDateTime);
-    startDay = timeStr;
-    requestDataWithCourseList(startDay:startDay);
+    // var nowDateTime = DateTime.now();
+    // var timeFormat = DateFormat("yyyy-MM-dd");
+    // var timeStr = timeFormat.format(nowDateTime);
+    // startDay = timeStr;
+    requestDataWithCourseList();
 
     eventBusFn = eventBus.on<EventFn>().listen((event) {
       //  event为 event.obj 即为 eventBus.dart 文件中定义的 EventFn 类中监听的数据
 
       if(event.obj == 'refresh'){
-        requestDataWithCourseList(startDay:startDay);
+        // startDay  = startDay;
+        // requestDataWithCourseList(startDay:startDay);
       }
       print('event.obj hh ===== ${event.obj}');
     });

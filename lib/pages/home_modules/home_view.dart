@@ -2,12 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../common/colors.dart';
-import '../../services/address.dart';
 import 'home_controller.dart';
 import 'notice_page.dart';
-
 
 class HomeView extends GetView{
   @override
@@ -89,13 +87,12 @@ class HomeView extends GetView{
                                 clipBehavior: Clip.hardEdge,
                                 padding: const EdgeInsets.all(0),
                                 child: CachedNetworkImage(
-                                  imageUrl: '${Address.homeHost}'
-                                      '${controller.homeIndexModel?.data?.banner?[index].coverUrl}',
+                                  imageUrl: '${controller.homeIndexModel?.data?.banner?[index].coverUrl}',
                                   placeholder: (context, url) => const Center(
                                     child: CircularProgressIndicator(),
                                   ),
                                   errorWidget: (context, url, error) => const Icon(Icons.error),
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             );
@@ -149,7 +146,7 @@ class HomeView extends GetView{
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(8))
                   ),
-                  height: 200,
+                  height: 260+120,
                   child: Column(
                     children: [
                       const SizedBox(height: 10,),
@@ -160,6 +157,16 @@ class HomeView extends GetView{
                       Image.asset('images/ic_location.png'),
                       const SizedBox(height: 10,),
 
+                      Container(
+                        margin: EdgeInsets.only(left: 15,right: 15),
+                        alignment: Alignment.center,
+                        width: Get.width,
+                        height: 180,
+                        // padding: EdgeInsets.only(left: 150),
+                        color: Colors.transparent,
+                        child:WebViewWidget(controller: controller.webViewController,),
+                      ),
+                      const SizedBox(height: 10,),
 
                       Center(
                         child: Container(
@@ -177,7 +184,7 @@ class HomeView extends GetView{
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 5),
-                        child: SelectableText('郵箱: ${controller.homeIndexModel?.data?.site?.mail}',
+                        child: SelectableText('電郵: ${controller.homeIndexModel?.data?.site?.mail}',
                           style: TextStyle(color: AppColor.themeTextColor),
                           textAlign: TextAlign.center,),
                       ),
@@ -210,10 +217,10 @@ class HomeView extends GetView{
                   padding: const EdgeInsets.only(left: 15),
                   alignment: Alignment.centerLeft,
                   height: 50,
-                    width: 150,
+                    width: 200,
                     // color: Colors.red,
                     child: Text('${controller.homeIndexModel?.data?.notice?[index].title}',
-                      style: TextStyle(fontWeight: FontWeight.w600,
+                      style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17,
                       color: AppColor.themeTextColor),maxLines: 1,overflow: TextOverflow.ellipsis,),
                 ),
                 Container(
@@ -222,7 +229,7 @@ class HomeView extends GetView{
                   height: 50,
                   // width: 100,
                   child: Text('${controller.homeIndexModel?.data?.notice?[index].noticeTime}'
-                    ,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12,
+                    ,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13,
                       color: AppColor.themeTextColor),),
                 ),
 

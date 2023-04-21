@@ -100,13 +100,16 @@ class _NoticePageState extends State<NoticePage> {
               ),
 
               Center(
-                child: Text('${_json?['data']['title']}'),
+                child: Text('${_json?['data']['title']}',style: TextStyle(
+                  fontWeight: FontWeight.w700,fontSize: 18
+                ),),
               ),
 
               Container(
                 padding: const EdgeInsets.only(left: 25,right: 25),
                 child: HtmlWidget(_json?['data']['body']??''),
               ),
+              SizedBox(height: 55,),
             ],
           )),
         ],

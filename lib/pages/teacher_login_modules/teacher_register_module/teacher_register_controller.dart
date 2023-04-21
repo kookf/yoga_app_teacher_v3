@@ -11,6 +11,7 @@ class TeacherRegisterController extends GetxController{
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
+  TextEditingController addressTextEditingController = TextEditingController();
   TextEditingController birthController = TextEditingController();
 
   String? birth;
@@ -27,7 +28,7 @@ class TeacherRegisterController extends GetxController{
       'password':passwordTextEditingController.text,
       'password_confirmation':passwordConfirmationController.text,
       'birth':birth,
-      'optional':'00',
+      'optional':addressTextEditingController.text,
       'is_teacher':'1',
     };
 

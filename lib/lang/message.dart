@@ -13,7 +13,7 @@ class I18nContent{
   static const String loginInLabel = '登入';
   static const String loginInSuccessLabel = '登錄成功';
   static const String versionLabel = '學生版';
-  static const String emailLabel = '郵箱';
+  static const String emailLabel = '電郵';
   static const String passwordLabel= '密碼';
   static const String enterPasswordLabel = '密碼';
   static const String createNewAccLabel = '創建一個新賬戶';
@@ -22,9 +22,9 @@ class I18nContent{
   static const String userPhoneLabel = '用戶電話';
   static const String notUserLabel = '未有賬戶';
   static const String registerUserLabel = '註冊賬戶';
-  static const String errorPleaseEnterTheEmailAddress = '請輸入正確的郵箱地址';
-  static const String errorEmailAddressNotEmpty = '郵件不能留空';
-  static const String errorPassWordNotEmpty = '郵件不能留空';
+  static const String errorPleaseEnterTheEmailAddress = '請輸入正確的電郵地址';
+  static const String errorEmailAddressNotEmpty = '電郵不能留空';
+  static const String errorPassWordNotEmpty = '電郵不能留空';
   /// 首頁
   static const String contactUsLabel = '聯繫我們';
   static const String noticeTitleLabel = '最新公告';
@@ -41,6 +41,7 @@ class I18nContent{
   static const String changePasswordLabel = '密碼修改';
   static const String signOutLabel = '退出登錄';
   ///
+  static const String addressLabel = '地址（選填）';
 
 
 }

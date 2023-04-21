@@ -236,7 +236,7 @@ class FixedPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             width: Get.width-100,
             child: DatePicker(
               DateTime.now(),
-              initialSelectedDate:controller.initDatetime,
+              // initialSelectedDate:controller.initDatetime,
               height: 90,
               selectionColor: AppColor.registerBgColor,
               selectedTextColor:AppColor.themeTextColor,
@@ -246,7 +246,7 @@ class FixedPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                 var timeFormat = DateFormat("yyyy-MM-dd");
                 var timeStr = timeFormat.format(date);
                 controller.startDay = timeStr;
-                controller.requestDataWithCourseList(startDay:timeStr);
+                controller.requestDataWithCourseList();
               },
             ),
           ),

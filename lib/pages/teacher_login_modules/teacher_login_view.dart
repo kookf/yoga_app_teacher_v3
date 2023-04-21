@@ -56,7 +56,7 @@ class LoginView extends GetView{
                           color: AppColor.btnBgColors,
                           borderRadius: const BorderRadius.all(Radius.circular(5))
                         ),
-                        child: const Text('老師版',style: TextStyle(color: Colors.white),)
+                        child: const Text('導師版',style: TextStyle(color: Colors.white),)
                       )
                     ],
                   )
@@ -94,7 +94,7 @@ class LoginView extends GetView{
                       ],
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: '郵件'
+                        hintText: '電郵'
                       ),
                     ),
                   ),
@@ -147,7 +147,7 @@ class LoginView extends GetView{
                     onTap: (startLoading, stopLoading, btnState) async {
                       if (btnState == ButtonState.idle) {
                         if(controller.emailTextEditingController.text.isEmpty){
-                          BotToast.showText(text: '郵件 不能留空');
+                          BotToast.showText(text: '電郵 不能留空');
                           return;
                         }
                         if(controller.passwordTextEditingController.text.isEmpty){

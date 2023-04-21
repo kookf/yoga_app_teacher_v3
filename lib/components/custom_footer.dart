@@ -115,7 +115,7 @@ class MaterialFooterWidgetState extends State<MaterialFooterWidget> {
 
       margin: const EdgeInsets.only(bottom: 0),
       // color: Colors.yellow,
-      child: const Text('我是有底線的~',style: TextStyle(fontSize: 13),),
+      child: const Text('到底線了~',style: TextStyle(fontSize: 13),),
     );
     }
     // 是否为垂直方向

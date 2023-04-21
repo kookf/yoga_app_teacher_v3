@@ -5,6 +5,8 @@ import 'package:yoga_app/common/colors.dart';
 import 'package:yoga_app/pages/teacher_login_modules/teacher_register_module/teacher_register_controller.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
+import '../../../lang/message.dart';
+
 class TeacherRegisterView extends GetView{
 
   @override
@@ -30,7 +32,7 @@ class TeacherRegisterView extends GetView{
               Container(
                 padding: const EdgeInsets.only(top: 25),
                 alignment: Alignment.center,
-                child: Text('老師註冊',style: TextStyle(fontSize: 31,color: AppColor.themeColor,fontWeight: FontWeight.w700),),
+                child: Text('導師註冊',style: TextStyle(fontSize: 31,color: AppColor.themeColor,fontWeight: FontWeight.w700),),
               ),
               const SizedBox(height: 25,),
               Center(
@@ -79,7 +81,7 @@ class TeacherRegisterView extends GetView{
                     ],
                     decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: '郵件'
+                        hintText: '電郵'
                     ),
                   ),
                 ),
@@ -216,6 +218,35 @@ class TeacherRegisterView extends GetView{
                         border: InputBorder.none,
                         hintText: '確認密碼'
                     ),
+                  ),
+                ),
+              ),
+              Padding(padding: const EdgeInsets.only(left: 30,top: 15),
+                child: Text(I18nContent.addressLabel,style: TextStyle(color: AppColor.themeColor),),),
+              Center(
+                child:  Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(left: 15),
+                  width: Get.width-50,
+                  height: 100,
+                  //边框设置
+                  decoration:  BoxDecoration(
+                    color: Colors.white,
+                    //设置四周圆角 角度
+                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //设置四周边框
+                    border:  Border.all(width: 1, color: AppColor.textFieldBorderColor),
+                  ),
+                  child: TextField(
+                    controller: controller.addressTextEditingController,
+                    inputFormatters: <TextInputFormatter>[
+                      LengthLimitingTextInputFormatter(100) //限制长度
+                    ],
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: I18nContent.addressLabel
+                    ),
+                    maxLines: 2,
                   ),
                 ),
               ),
