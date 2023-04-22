@@ -37,7 +37,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
   String startDay = '';
 
 
-  requestDataWithSignList({int page = 1,})async{
+  requestDataWithSignList()async{
 
     var params = {
       'method':'subscribe.list',
@@ -303,11 +303,12 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
               footer: MaterialFooter1(),
               controller: easyRefreshController,
               onRefresh: ()async{
-                requestDataWithSignList(page: 1);
+                page = 1;
+                requestDataWithSignList();
               },
               onLoad: ()async{
                 page++;
-                requestDataWithSignList(page: page);
+                requestDataWithSignList();
               },
               slivers: [
                 SliverList(
@@ -351,8 +352,10 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                         Text('${model.name}',style: TextStyle(fontWeight: FontWeight.w700,
                             fontSize: 18,color: AppColor.themeTextColor),),
                         const SizedBox(height: 5,),
-                        Text('日期:${model.createdAt}',style: TextStyle(fontWeight: FontWeight.w700,
-                            fontSize: 18,color: AppColor.themeTextColor),),
+                       sign =='1'?Text('簽到時間:${model.signTime}',style: TextStyle(fontWeight: FontWeight.w700,
+                            fontSize: 18,color: AppColor.themeTextColor),):
+                       Text('預約時間:${model.createdAt}',style: TextStyle(fontWeight: FontWeight.w700,
+                           fontSize: 18,color: AppColor.themeTextColor),),
 
                         // Text('開始時間：${model.startDay} ${model.startTime}',style: TextStyle(fontWeight: FontWeight.w700,
                         //     fontSize: 16,color: AppColor.themeTextColor),),

@@ -93,6 +93,10 @@
             android:name="com.leeson.image_pickers.activitys.VideoActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <uses-library
             android:name="androidx.window.extensions"

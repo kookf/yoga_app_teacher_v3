@@ -73,6 +73,7 @@ dependencies:
   # 极光推送
 #  jpush_flutter: 2.4.2
   webview_flutter: ^4.0.7
+  url_launcher: ^6.1.10
 
 
   # The following adds the Cupertino Icons font to your application.

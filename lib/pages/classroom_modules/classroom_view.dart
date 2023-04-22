@@ -55,7 +55,13 @@ class ClassroomView extends GetView{
                     //   width: 0.5,
                     //   color: Colors.black,
                     // ),
-                    Text('全部課程',style: TextStyle(color: AppColor.themeTextColor,fontWeight: FontWeight.w600),),
+                    TextButton(onPressed: (){
+                      controller.tapClickAllClass();
+                    }, child: Text('全部课程',style: TextStyle(
+                      color: AppColor.themeTextColor,fontWeight: FontWeight.w600
+                    ),),),
+                    // Text('全部課程',style: TextStyle(color: AppColor.
+                    // themeTextColor,fontWeight: FontWeight.w600),),
                     // Container(
                     //   height: 25,
                     //   width: 0.5,
@@ -170,8 +176,9 @@ class ClassroomView extends GetView{
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 10,left: 15,bottom: 15),
-                            child: Text('開堂時間：${model.startDay} ${model.startTime}',style: appThemeData.textTheme.bodyText1!.copyWith(
-                                color: AppColor.themeTextColor,fontWeight: FontWeight.w700
+                            child: Text('開堂時間：${model.startDay} ${model.startTime}',
+                              style: appThemeData.textTheme.bodyText1!.copyWith(
+                                color: AppColor.themeTextColor,fontWeight: FontWeight.w700,fontSize: 12
                             ),),
                           ),
 
@@ -183,7 +190,6 @@ class ClassroomView extends GetView{
                         child: Center(
                           child: MaterialButton(onPressed: () {
                             Get.to(SubscribePage(model.name!,model.courseTimeId!,));
-
                           },color: AppColor.themeColor,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(20))

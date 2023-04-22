@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/link.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../common/colors.dart';
 import 'home_controller.dart';
@@ -146,7 +147,7 @@ class HomeView extends GetView{
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(8))
                   ),
-                  height: 260+120,
+                  height: 230,
                   child: Column(
                     children: [
                       const SizedBox(height: 10,),
@@ -156,26 +157,29 @@ class HomeView extends GetView{
 
                       Image.asset('images/ic_location.png'),
                       const SizedBox(height: 10,),
-
-                      Container(
-                        margin: EdgeInsets.only(left: 15,right: 15),
-                        alignment: Alignment.center,
-                        width: Get.width,
-                        height: 180,
-                        // padding: EdgeInsets.only(left: 150),
-                        color: Colors.transparent,
-                        child:WebViewWidget(controller: controller.webViewController,),
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(left: 15,right: 15),
+                      //   alignment: Alignment.center,
+                      //   width: Get.width,
+                      //   height: 180,
+                      //   // padding: EdgeInsets.only(left: 150),
+                      //   color: Colors.transparent,
+                      //   child:WebViewWidget(controller: controller.webViewController,),
+                      // ),
+                  Link(
+                    uri: Uri.parse(
+                        'https://maps.app.goo.gl/VACS6ymbcMzpdUTP7?g_st=iw'),
+                    target: LinkTarget.blank,
+                    builder: (BuildContext ctx, FollowLink? openLink) {
+                      return TextButton.icon(
+                        onPressed: openLink,
+                        label: Text('地址:${controller.homeIndexModel?.data?.site?.address}（按此查看地圖）'
+                          ,style: TextStyle(color: AppColor.themeTextColor),textAlign: TextAlign.center,),
+                        icon: SizedBox(),
+                      );
+                    },
+                  ),
                       const SizedBox(height: 10,),
-
-                      Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 5),
-                          child: SelectableText('地址:${controller.homeIndexModel?.data?.site?.address}'
-                            ,style: TextStyle(color: AppColor.themeTextColor),
-                            textAlign: TextAlign.center,),
-                        ),
-                      ),
                       Container(
                         margin: EdgeInsets.only(top: 5),
                         child: SelectableText('Tel: ${controller.homeIndexModel?.data?.site?.tel}',

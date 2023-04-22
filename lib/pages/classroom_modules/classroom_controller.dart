@@ -75,6 +75,11 @@ class ClassroomController extends GetxController{
     }
     update();
   }
+  /// 全部课程点
+  tapClickAllClass()async{
+    startDay = '';
+    requestDataWithCourseList();
+  }
 
 
   var eventBusFn;
