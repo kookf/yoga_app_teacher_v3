@@ -352,10 +352,13 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                         Text('${model.name}',style: TextStyle(fontWeight: FontWeight.w700,
                             fontSize: 18,color: AppColor.themeTextColor),),
                         const SizedBox(height: 5,),
-                       sign =='1'?Text('簽到時間:${model.signTime}',style: TextStyle(fontWeight: FontWeight.w700,
-                            fontSize: 18,color: AppColor.themeTextColor),):
-                       Text('預約時間:${model.createdAt}',style: TextStyle(fontWeight: FontWeight.w700,
-                           fontSize: 18,color: AppColor.themeTextColor),),
+                        selectIndex ==1||selectIndex==3?Text('預約時間:${model.createdAt}',
+                         style: TextStyle(fontWeight: FontWeight.w700,
+                            fontSize: 18,color: AppColor.themeTextColor),):selectIndex==2?
+                       Text('簽到時間:${model.signTime}',style: TextStyle(fontWeight: FontWeight.w700,
+                           fontSize: 18,color: AppColor.themeTextColor),):
+                        Text('取消時間:${model.cancelTime}',style: TextStyle(fontWeight: FontWeight.w700,
+                            fontSize: 18,color: AppColor.themeTextColor),),
 
                         // Text('開始時間：${model.startDay} ${model.startTime}',style: TextStyle(fontWeight: FontWeight.w700,
                         //     fontSize: 16,color: AppColor.themeTextColor),),
@@ -367,9 +370,8 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
 
                       ],
                     ),
-                    SizedBox(
-                      // color: Colors.red,
-                      width: 100,
+                    Container(
+                      color: Colors.white,
                       child: Center(
                         child: Container(
                           alignment: Alignment.center,
@@ -379,7 +381,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                           ),
                           height: 35,
                           width: 80,
-                          child:   Text(selectIndex==1?'已預約':selectIndex==2?'已上課'
+                          child:  Text(selectIndex==1?'已預約':selectIndex==2?'已上課'
                               :selectIndex==3?'缺席':'已取消',style: const TextStyle(color: Colors.white),),
                         ),
                       ),

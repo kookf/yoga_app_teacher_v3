@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import '../router/app_pages.dart';
 import '../utils/persisten_storage.dart';
 import 'address.dart';
@@ -29,7 +31,7 @@ class DioManager{
 
   Future kkRequest(
     String url, {
-    bool isShowLoad = false,
+    bool isShowLoad = true,
     String method = 'post',
     Map<String, dynamic>? params,
     var bodyParams,
@@ -41,7 +43,9 @@ class DioManager{
       print('baseOptions.baseUrl == ${baseOptions.baseUrl}');
     }
     if (isShowLoad == true) {
-      BotToast.showLoading(clickClose: true);
+      BotToast.showCustomLoading(clickClose: true, toastBuilder: (void Function() cancelFunc) {
+        return const CupertinoActivityIndicator();
+      },backgroundColor: Colors.transparent);
     }
 
     Map<String, dynamic> baseHeader = {

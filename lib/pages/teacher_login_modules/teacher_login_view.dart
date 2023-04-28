@@ -32,8 +32,8 @@ class LoginView extends GetView{
            const SizedBox(height: 0,),
             Stack(
               children: [
-                Image.asset('images/login_bg.png',width: Get.width,
-                fit: BoxFit.cover,
+                Image.asset('images/login_bg.png',width: Get.width,height: 500,
+                fit: BoxFit.fill,
                 ),
                 Container(
                   color: Colors.transparent,
