@@ -28,10 +28,12 @@ class HomeView extends GetView{
             Container(
                 height: MediaQuery.of(context).padding.top+kToolbarHeight,
                 width: Get.width,
-                decoration: const BoxDecoration(
-                  image:DecorationImage(image: AssetImage('images/appbar_bg.png',),
-                    fit: BoxFit.fill,
-                  ),
+                decoration: BoxDecoration(
+                    color: AppColor.themeColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                  // image:DecorationImage(image: AssetImage('images/appbar_bg.png',),
+                  //   fit: BoxFit.fill,
+                  // ),
                 ),
                 alignment: Alignment.center,
                 child: Container(

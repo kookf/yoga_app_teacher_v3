@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:yoga_app/pages/mine_modules/class_record_module/class_record_model.dart';
@@ -132,7 +133,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
         ),
         // Image.asset('images/appbar_bg.png',fit: BoxFit.fitWidth,width: Get.width,),
         Align(
-
           child:Container(
             width: Get.width,
             margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+25),
@@ -339,7 +339,6 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                     )
                 ),
                 padding: const EdgeInsets.only(left: 15,right: 5),
-                height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -347,8 +346,27 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.all(Radius.circular(25))
+                          ),
+                          clipBehavior: Clip.hardEdge,
+                          child: CachedNetworkImage(
+                            imageUrl: '${Address.homeHost}/storage/${model.avatar}',
+                            placeholder: (context, url) => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         Text('${model.courseName}',style: TextStyle(fontWeight: FontWeight.w700,
                             fontSize: 18,color: AppColor.themeTextColor),),
+                        SizedBox(height: 5,),
                         Text('${model.name}',style: TextStyle(fontWeight: FontWeight.w700,
                             fontSize: 18,color: AppColor.themeTextColor),),
                         const SizedBox(height: 5,),
@@ -359,6 +377,7 @@ class _ClassRecordPageState extends State<ClassRecordPage> {
                            fontSize: 18,color: AppColor.themeTextColor),):
                         Text('取消時間:${model.cancelTime}',style: TextStyle(fontWeight: FontWeight.w700,
                             fontSize: 18,color: AppColor.themeTextColor),),
+                        SizedBox(height: 15,),
 
                         // Text('開始時間：${model.startDay} ${model.startTime}',style: TextStyle(fontWeight: FontWeight.w700,
                         //     fontSize: 16,color: AppColor.themeTextColor),),

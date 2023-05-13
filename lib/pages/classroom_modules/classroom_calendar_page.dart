@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 import '../../common/colors.dart';
 import '../../components/gradient_button.dart';
 import 'package:get/get.dart';
+
+import '../../services/address.dart';
+import '../../services/dio_manager.dart';
 class ClassRoomCalendarPage extends StatefulWidget {
 
   const ClassRoomCalendarPage({Key? key}) : super(key: key);
@@ -21,13 +24,33 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    requestDataWithCourseNum();
+  }
+
+  CourseNumModel? courseNumModel;
+  requestDataWithCourseNum()async{
+    var params = {
+      'method':'course.nums',
+      'is_teacher':1,
+    };
+    var json = await DioManager().kkRequest(Address.hostAuth,bodyParams: params);
+    CourseNumModel model = CourseNumModel.fromJson(json);
+    courseNumModel = model;
+    print(model.message);
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         // actions: [
-          // IconButton(onPressed: (){
-          //
-          // }, icon: Image.asset('images/message_icon.png'))
+        // IconButton(onPressed: (){
+        //
+        // }, icon: Image.asset('images/message_icon.png'))
         // ],
         backgroundColor: AppColor.themeColor,
         iconTheme: const IconThemeData(
@@ -37,33 +60,65 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
       body: ListView(
         children: [
           Container(
-            height: 80,
-            decoration: BoxDecoration(
-              color: AppColor.themeColor,
-              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
-            ),
-            padding: const EdgeInsets.only(left: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('選擇一個日期',style: TextStyle(fontSize: 18,color: Colors.white),),
-                // Text('成人減壓班1201 陳大明#2368',style: TextStyle(fontSize: 18,color: Colors.white),),
-              ],
-            )
+              height: 80,
+              decoration: BoxDecoration(
+                color: AppColor.themeColor,
+                borderRadius: const BorderRadius.only(bottomLeft:
+                Radius.circular(15),bottomRight: Radius.circular(15)),
+              ),
+              padding: const EdgeInsets.only(left: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text('選擇查詢日期',style: TextStyle(fontSize: 18,color: Colors.white),),
+                  // Text('成人減壓班1201 陳大明#2368',style: TextStyle(fontSize: 18,color: Colors.white),),
+                ],
+              )
           ),
           _buildDefaultSingleDatePickerWithValue(),
         ],
       ),
     );
   }
+
   Widget _buildDefaultSingleDatePickerWithValue() {
-    final config = CalendarDatePicker2Config(
+    final config = CalendarDatePicker2WithActionButtonsConfig(
       selectedDayHighlightColor: AppColor.themeColor,
+      dayBuilder: (({required date, decoration, isDisabled, isSelected, isToday, textStyle}) {
+
+        var timeFormat = DateFormat("yyyy-MM-dd");
+        var timeStr = timeFormat.format(date);
+
+        var num;
+        for(int i = 0;i<courseNumModel!.data!.list!.length;i++){
+          if(timeStr == courseNumModel!.data!.list![i].startDay){
+            num = courseNumModel!.data!.list![i].nums;
+          }
+        }
+
+        return Container(
+          alignment: Alignment.center,
+          decoration: decoration,
+          // color: Colors.red,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('${date.day}'),
+              num==null?SizedBox():
+              Text('/(${num})',style: TextStyle(
+                  fontSize: 13,color: AppColor.themeTextColor,
+                fontStyle: FontStyle.italic
+              ),),
+            ],
+          ),
+        );
+      }),
       weekdayLabels: ['日', '一', '二', '三', '四', '五', '六'],
       weekdayLabelTextStyle: const TextStyle(
         color: Colors.black87,
         fontWeight: FontWeight.w400,
       ),
+
       firstDayOfWeek: 1,
       controlsHeight: 50,
       controlsTextStyle: const TextStyle(
@@ -78,9 +133,9 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
       disabledDayTextStyle: const TextStyle(
         color: Colors.grey,
       ),
-      // selectableDayPredicate: (day) => !day
-      //     .difference(DateTime.now().subtract(const Duration(days: 31)))
-      //     .isNegative,
+      selectableDayPredicate: (day) => !day
+          .difference(DateTime.now().subtract(const Duration(days: 31)))
+          .isNegative,
     );
     return Column(
       // mainAxisSize: MainAxisSize.min,
@@ -208,7 +263,7 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
             var timeFormat = DateFormat("yyyy-MM-dd");
             var timeStr = timeFormat.format(_singleDatePickerValueWithDefaultValue[0]!);
             print(timeStr);
-            Get.back(result: timeStr);
+            Get.back(result: '${timeStr}');
           },
           child:Center(
             child: Container(
@@ -220,7 +275,7 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
                 AppColor.themeColor,
                 AppColor.themeColor,
               ],
-                child: const Text('确定'),),
+                child: Text('確定'),),
             ),
           ),
         )
@@ -260,4 +315,53 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
 
   int selectedValue = 0;
 
+}
+
+class CourseNumModel {
+  int? code;
+  String? message;
+  Data? data;
+
+  CourseNumModel({this.code, this.message, this.data});
+
+  CourseNumModel.fromJson(Map<String, dynamic> json) {
+    code = json['code'];
+    message = json['message'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+  }
+}
+
+class Data {
+  List<CourseNumList>? list;
+
+  Data({this.list});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    if (json['list'] != null) {
+      list = <CourseNumList>[];
+      json['list'].forEach((v) {
+        list!.add(CourseNumList.fromJson(v));
+      });
+    }
+  }
+
+}
+
+class CourseNumList {
+  var nums;
+  String? startDay;
+
+  CourseNumList({this.nums, this.startDay});
+
+  CourseNumList.fromJson(Map<String, dynamic> json) {
+    nums = json['nums'];
+    startDay = json['start_day'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['nums'] = nums;
+    data['start_day'] = startDay;
+    return data;
+  }
 }

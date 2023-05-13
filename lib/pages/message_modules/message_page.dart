@@ -29,11 +29,15 @@ class MessagePage extends GetView{
             Container(
                 height: MediaQuery.of(context).padding.top+kToolbarHeight,
                 width: Get.width,
-                decoration: const BoxDecoration(
-                  image:DecorationImage(image: AssetImage('images/appbar_bg.png',),
-                    fit: BoxFit.fill,
-                  ),
+                decoration: BoxDecoration(
+                  color: AppColor.themeColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
+                // decoration: const BoxDecoration(
+                //   image:DecorationImage(image: AssetImage('images/appbar_bg.png',),
+                //     fit: BoxFit.fill,
+                //   ),
+                // ),
                 alignment: Alignment.center,
                 child: Container(
                   padding: const EdgeInsets.only(top: 25),
@@ -41,6 +45,7 @@ class MessagePage extends GetView{
                 )
             ),
             Expanded(child:  Container(
+              margin: EdgeInsets.only(top: 5),
               color: AppColor.themeColor,
               child: EasyRefresh.custom(
                   emptyWidget:controller.dataArr.isEmpty?const Center(child:Text('暫無信息')):null,

@@ -59,6 +59,7 @@ class SignRecordList {
   String? createdAt;
   String? signTime;
   String? cancelTime;
+  String? avatar;
 
   SignRecordList(
       {this.id,
@@ -70,6 +71,7 @@ class SignRecordList {
         this.gold,
         this.signTime,
         this.cancelTime,
+        this.avatar,
         this.createdAt});
 
   SignRecordList.fromJson(Map<String, dynamic> json) {
@@ -83,6 +85,7 @@ class SignRecordList {
     createdAt = json['created_at'];
     signTime = json['sign_time'];
     cancelTime = json['cancel_time'];
+    avatar = json['avatar'];
   }
 
   Map<String, dynamic> toJson() {
