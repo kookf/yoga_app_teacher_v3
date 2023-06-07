@@ -70,7 +70,7 @@ class _SubscribePageState extends State<SubscribePage> {
     var nowDateTime = DateTime.now();
 
     // var timeFormat = DateFormat("yyyy-MM-dd HH:ss:mm");
-    var timeFormat = DateFormat("yyyy-mm-dd HH:mm:ss");
+    var timeFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
 
     var timeStr = timeFormat.format(nowDateTime);
 

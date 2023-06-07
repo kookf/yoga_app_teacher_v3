@@ -42,7 +42,7 @@ class I18nContent{
   static const String signOutLabel = '退出登錄';
   ///
   static const String addressLabel = '地址（選填）';
-
+  static const String escLabel = '刪除賬號';
 
 }
 

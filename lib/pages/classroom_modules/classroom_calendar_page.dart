@@ -105,7 +105,7 @@ class _ClassRoomCalendarPageState extends State<ClassRoomCalendarPage> {
             children: [
               Text('${date.day}'),
               num==null?SizedBox():
-              Text('/(${num})',style: TextStyle(
+              Text(' (${num})',style: TextStyle(
                   fontSize: 13,color: AppColor.themeTextColor,
                 fontStyle: FontStyle.italic
               ),),

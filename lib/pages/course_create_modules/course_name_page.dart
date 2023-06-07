@@ -12,7 +12,7 @@ class CourseNamePage extends StatefulWidget {
 class _CourseNamePageState extends State<CourseNamePage> {
   
   
-  
+
   var dataArr = [];
   
   requestDataWithCourseName()async{
@@ -41,7 +41,9 @@ class _CourseNamePageState extends State<CourseNamePage> {
       appBar: AppBar(
         title: const Text('課堂名稱'),
       ),
-      body: ListView.builder(itemBuilder: _buildListItem,itemCount: dataArr.length,),
+
+      body: ListView.builder(
+        itemBuilder: _buildListItem,itemCount: dataArr.length,),
     );
   }
   Widget _buildListItem(BuildContext context, int index) {
@@ -55,5 +57,4 @@ class _CourseNamePageState extends State<CourseNamePage> {
       },
     );
   }
-  
 }

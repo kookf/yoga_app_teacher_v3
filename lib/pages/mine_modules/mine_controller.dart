@@ -45,6 +45,15 @@ class MineController extends GetxController{
     BotToast.showText(text: json['message']);
     update();
   }
+  /// 刪除賬號
+  requestDataWithDelete()async{
+    var params = {
+      'method': 'auth.delete',
+    };
+    var json = await DioManager().kkRequest(Address.hostAuth,isShowLoad: true,
+        bodyParams: params);
+    Get.offNamed(AppRoutes.login);
+  }
   @override
   void onInit() {
     // TODO: implement onInit

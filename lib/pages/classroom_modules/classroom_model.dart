@@ -80,7 +80,7 @@ class Course {
   int? teacherId;
   int? courseId;
   String? name;
-  String? gold;
+  var gold;
   int? times;
   String? teacherName;
   String? teacherAvatar;

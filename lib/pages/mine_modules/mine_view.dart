@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:yoga_app/pages/mine_modules/class_record_module/class_record_page.dart';
 import 'package:yoga_app/pages/mine_modules/setting_page.dart';
 import '../../common/colors.dart';
+import '../../lang/message.dart';
 import '../../services/address.dart';
 import 'change_avatar_page.dart';
 import 'change_password_page.dart';
@@ -244,6 +245,58 @@ class MineView extends GetView{
                     ],
                   )
               ),
+            ),
+            GestureDetector(
+              onTap: () {
+                // Get.to(const SettingPage());
+                Get.defaultDialog(
+                    title: '提示',
+                    content: Text('是否確認刪除賬號'),
+                    cancel: MaterialButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text('取消'),
+                    ),
+                    confirm: MaterialButton(
+                      onPressed: () {
+                        Get.back();
+                        controller.requestDataWithDelete();
+                      },
+                      child: Text(
+                        '確認刪除',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ));
+                //
+              },
+              child: Container(
+                  decoration:  BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          color: Colors.black,
+                          width: 0.3
+                      )
+                  ),
+                  padding: const EdgeInsets.only(left: 55, right: 55),
+                  height: 75,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        I18nContent.escLabel,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 23,
+                            color: Colors.red),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 30,
+                        color: Colors.grey,
+                      )
+                    ],
+                  )),
             ),
 
           ],

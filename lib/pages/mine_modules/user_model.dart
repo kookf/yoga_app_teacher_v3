@@ -27,7 +27,7 @@ class Data {
   String? name;
   String? email;
   String? phone;
-  String? balance;
+  var balance;
   String? birth;
   String? optional;
   String? updatedAt;
